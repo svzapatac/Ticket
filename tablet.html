@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ticket</title>
+
+<style>
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 10px;
+}
+
+/* formulario */
+.formulario {
+    max-width: 300px;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+/* ticket */
+.ticket {
+    width: 58mm;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #000;
+}
+
+/* SOLO SE IMPRIME EL TICKET */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .ticket, .ticket * {
+        visibility: visible;
+    }
+    .ticket {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="formulario">
+<h3>Generar Ticket</h3>
+
+Cliente:<input id="cliente">
+Convenio:<input id="convenio">
+Fecha:<input id="fecha">
+Hora:<input id="hora">
+Referencia:<input id="referencia">
+Autorización:<input id="autorizacion">
+Valor:<input id="valor">
+ID Transacción:<input id="idTrans">
+
+<button onclick="imprimir()">IMPRIMIR TICKET</button>
+</div>
+
+<!-- TICKET -->
+<div class="ticket" id="ticket">
+<b style="font-size:18px;">MOVIIRED</b>
+<hr>
+
+Fecha: <span id="t_fecha"></span><br>
+Hora: <span id="t_hora"></span><br><br>
+
+Producto: <span id="t_convenio"></span><br>
+Referencia: <span id="t_referencia"></span><br>
+Autorización: <span id="t_autorizacion"></span><br>
+Valor: <span id="t_valor"></span><br><br>
+
+ID Transacción:<br>
+<span id="t_idTrans"></span><br><br>
+
+Cliente:<br>
+<span id="t_cliente"></span>
+
+<hr>
+Gracias por su pago
+</div>
+
+<script>
+function imprimir() {
+    // copiar datos al ticket
+    t_cliente.textContent = cliente.value;
+    t_convenio.textContent = convenio.value;
+    t_fecha.textContent = fecha.value;
+    t_hora.textContent = hora.value;
+    t_referencia.textContent = referencia.value;
+    t_autorizacion.textContent = autorizacion.value;
+    t_valor.textContent = valor.value;
+    t_idTrans.textContent = idTrans.value;
+
+    // imprimir
+    window.print();
+}
+</script>
+
+</body>
+</html>
